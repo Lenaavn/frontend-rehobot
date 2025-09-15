@@ -8,8 +8,8 @@ const port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, 'dist/rehobot_front/browser')));
 
 // Redirigir todas las rutas al index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/rehobot_front/browser/index.html'));
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(distFolder, 'index.html'));
 });
 
 app.listen(port, () => {
