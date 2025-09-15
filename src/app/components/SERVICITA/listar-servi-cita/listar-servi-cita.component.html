@@ -45,7 +45,7 @@
     <tr mat-row *matRowDef="let sc; columns: displayedColumns;"></tr>
 
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="6">
+      <td class="mat-cell" colspan="6" class="mensaje">
         <span>{{ dataSource.data.length === 0 && !input.value ? 'Aún no hay valoraciones registradas' : 'No hay coincidencias para "' + input.value + '"' }}</span>
       </td>
     </tr>
