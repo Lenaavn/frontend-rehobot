@@ -73,6 +73,10 @@ export class CrearCitaComponent implements OnInit {
     });
   }
 
+  get vehiculosActivos(): Vehiculo[] {
+    return this.vehiculos?.filter(v => v.activo) ?? [];
+  }
+
   private cargarServicios(): void {
     this.servicioService.listarServicios().subscribe(data => {
       this.servicios = data;
