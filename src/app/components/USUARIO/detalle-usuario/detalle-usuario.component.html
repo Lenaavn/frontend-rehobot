@@ -12,7 +12,7 @@
     <p><strong>Vehículos:</strong></p>
     <hr>
     <ul>
-      <li *ngFor="let v of user.vehiculos">
+      <li *ngFor="let v of user.vehiculos.filter(v => v.activo)">
         <p>Marca: {{ v.marca }}</p>
         <p>Modelo: {{ v.modelo }}</p>
         <p>Matrícula: {{ v.matricula }}</p>

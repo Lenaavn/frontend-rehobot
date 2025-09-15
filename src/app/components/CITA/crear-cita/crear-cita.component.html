@@ -18,7 +18,7 @@
         <div class="form-group">
             <label for="vehiculo">Vehículo</label>
             <select id="vehiculo" [(ngModel)]="idVehiculo" name="idVehiculo" required>
-                <option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">
+                <option *ngFor="let vehiculo of vehiculos.filter(v => v.activo)" [value]="vehiculo.id">
                     {{ vehiculo.marca }} {{ vehiculo.modelo }} ({{ vehiculo.matricula }})
                 </option>
             </select>
