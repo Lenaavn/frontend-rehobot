@@ -1,0 +1,35 @@
+<div class="form-container">
+  <h2>Crear Usuario</h2>
+  
+  <form #form="ngForm" (ngSubmit)="crearUsuario(form)">
+    <!-- Mostrar mensaje de error global -->
+    <div *ngIf="mensajeErrorGeneral" class="error-global">
+      <p>{{ mensajeErrorGeneral }}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" [(ngModel)]="email" name="email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="telefono">Teléfono</label>
+      <input type="text" id="telefono" [(ngModel)]="telefono" name="telefono" required />
+    </div>
+
+    <div class="form-group">
+      <label for="contrasena">Contraseña</label>
+      <input type="password" id="contrasena" [(ngModel)]="contrasena" name="contrasena" required />
+    </div>
+
+    <div class="botones-contenedor">
+      <button (click)="volver()" type="button" class="Boton">Volver</button>
+      <button type="submit" class="Boton" [disabled]="form.invalid">Crear Usuario</button>
+    </div>
+  </form>
+</div>

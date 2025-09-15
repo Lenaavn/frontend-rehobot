@@ -1,0 +1,48 @@
+/* Estilo para el encabezado */
+header {
+    background-color: #222; 
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+}
+
+/* Contenedor para el logo */
+.logo-container {
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+/* Estilo para el logo */
+.logo {
+    max-width: 200px; 
+    height: auto;
+    filter: drop-shadow(10px 10px 40px white);
+}
+
+/* Franja roja abajo del header con los iconos */
+.bottom-bar {
+    background-color: #d32f2f;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 10px 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-bottom: 1px solid white;
+}
+
+/* Estilo para los iconos */
+.material-symbols-outlined {
+    font-size: 25px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.material-symbols-outlined:hover {
+    color:#861d1d;
+}
+
+

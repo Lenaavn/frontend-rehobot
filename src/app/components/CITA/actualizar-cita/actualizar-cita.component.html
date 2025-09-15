@@ -1,0 +1,55 @@
+<div class="form-container">
+    <h2>Actualizar Cita</h2>
+    <p>Si deseas actualizar algún campo, cambia su valor. De lo contrario, deja los campos como están y envía el
+        formulario.</p>
+
+    <form #form="ngForm" (ngSubmit)="actualizarCita(form)">
+        <!-- Mostrar mensaje de error global -->
+        <div *ngIf="mensajeErrorGeneral" class="error-global">
+            <p>{{ mensajeErrorGeneral }}</p>
+        </div>
+
+        <!-- ID (solo lectura) -->
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" id="id" [(ngModel)]="cita.id" name="id" readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="idVehiculo">ID Vehículo</label>
+            <input type="number" id="idVehiculo" [(ngModel)]="cita.idVehiculo" name="idVehiculo" required />
+        </div>
+
+        <div class="form-group">
+            <label for="idServicio">ID Servicio</label>
+            <input type="number" id="idServicio" [(ngModel)]="cita.idServicio" name="idServicio" required />
+        </div>
+
+        <!-- ID Pago (solo lectura) -->
+        <div class="form-group">
+            <label for="idPago">ID Pago</label>
+            <input type="number" id="idPago" [(ngModel)]="cita.idPago" name="idPago" readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" [(ngModel)]="cita.fecha" name="fecha" required />
+        </div>
+
+        <div class="form-group">
+            <label for="hora">Hora</label>
+            <input type="time" id="hora" [(ngModel)]="cita.hora" name="hora" step="60" required />
+        </div>
+
+        <!-- Estado (solo lectura) -->
+        <div class="form-group">
+            <label for="estado">Estado</label>
+            <input type="text" id="estado" [(ngModel)]="cita.estado" name="estado" readonly />
+        </div>
+
+        <div class="botones-contenedor">
+            <button (click)="volver()" type="button" class="Boton">Volver</button>
+            <button type="submit" class="Boton" [disabled]="form.invalid">Actualizar Cita</button>
+        </div>
+    </form>
+</div>

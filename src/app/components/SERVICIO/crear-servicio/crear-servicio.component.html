@@ -1,0 +1,37 @@
+<div class="form-container">
+    <h2>Crear Servicio</h2>
+
+    <form #form="ngForm" (ngSubmit)="crearServicio(form)">
+        <!-- Mostrar mensaje de error global -->
+        <div *ngIf="mensajeErrorGeneral" class="error-global">
+            <p>{{ mensajeErrorGeneral }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <select id="nombre" [(ngModel)]="nombre" name="nombre" required>
+                <option value="LAVADO_ASPIRADO_COCHE_PEQUENO">Lavado y aspirado coche pequeño</option>
+                <option value="LAVADO_ASPIRADO_CAMIONETA">Lavado y aspirado camioneta</option>
+                <option value="LAVADO_TAPICERIA_COCHE_PEQUENO">Lavado de tapicería coche pequeño</option>
+                <option value="PULIDO_FAROS">Pulido de faros</option>
+                <option value="DETALLADO_COMPLETO">Detallado completo</option>
+                <option value="TRATAMIENTO_CERAMICO">Tratamiento cerámico</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <input type="text" id="descripcion" [(ngModel)]="descripcion" name="descripcion" required />
+        </div>
+
+        <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="number" id="precio" [(ngModel)]="precio" name="precio" required />
+        </div>
+
+        <div class="botones-contenedor">
+            <button (click)="volver()" type="button" class="Boton">Volver</button>
+            <button type="submit" class="Boton" [disabled]="form.invalid">Crear Servicio</button>
+        </div>
+    </form>
+</div>

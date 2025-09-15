@@ -1,0 +1,54 @@
+<h2>Lista de Valoraciones</h2>
+
+<!-- Filtro de búsqueda -->
+<mat-form-field>
+    <mat-label>Buscar Valoraciones</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar por usuario o servicio" #input>
+</mat-form-field>
+
+<!-- Tabla de valoraciones -->
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="usuario">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-usuario"> Usuario </th>
+            <td mat-cell *matCellDef="let serviCita" class="col-usuario"> {{ serviCita.nombreUsuario }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="servicio">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-servicio"> Servicio </th>
+            <td mat-cell *matCellDef="let serviCita"  class="col-servicio"> {{ serviCita.servicio | formatEnum }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="comentario">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
+            <td mat-cell *matCellDef="let serviCita"> {{ serviCita.comentario }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="valoracion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Valoración </th>
+            <td mat-cell *matCellDef="let serviCita"> {{ serviCita.valoracion }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let serviCita; columns: displayedColumns;"></tr>
+
+        <!-- Mensaje -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5" class="mensaje">
+                <span>{{ dataSource.data.length === 0 && !input.value ? 'Aún no
+                    hay valoraciones registradas' : 'No hay valoraciones que coincidan con "' + input.value + '"' }}</span>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Paginador -->
+    <mat-paginator [pageSizeOptions]="[2, 5, 10, 25, 50, 100]" [pageSize]="10"
+        aria-label="Seleccionar cantidad de valoraciones"></mat-paginator>
+
+</div>
+
+<!-- Botones inferiores -->
+<div class="botones-inferiores">
+    <button class="Boton" (click)="volverAlInicio()">Volver</button>
+</div>

@@ -1,0 +1,36 @@
+<div class="form-container">
+    <h2>Actualizar Servicio</h2>
+    <p>Si deseas actualizar algún campo, cambia su valor. De lo contrario, deja los campos como están y envía el
+        formulario.</p>
+
+    <form #form="ngForm" (ngSubmit)="actualizarServicio(form)">
+        <!-- Mostrar mensaje de error global -->
+        <div *ngIf="mensajeErrorGeneral" class="error-global">
+            <p>{{ mensajeErrorGeneral }}</p>
+        </div>
+
+        <!-- ID OCULTO -->
+        <input type="hidden" [(ngModel)]="servicio.id" name="id" />
+
+        <!-- Nombre Servicio -->
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" [(ngModel)]="servicio.nombre" name="nombre" readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <input type="text" id="descripcion" [(ngModel)]="servicio.descripcion" name="descripcion" required />
+        </div>
+
+        <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="number" id="precio" [(ngModel)]="servicio.precio" name="precio" required />
+        </div>
+
+        <div class="botones-contenedor">
+            <button (click)="volver()" type="button" class="Boton">Volver</button>
+            <button type="submit" class="Boton" [disabled]="form.invalid">Actualizar Servicio</button>
+        </div>
+    </form>
+</div>

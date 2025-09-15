@@ -1,0 +1,40 @@
+<div class="form-container">
+    <h2>Crear Valoración</h2>
+
+    <form #form="ngForm" (ngSubmit)="crearServiCita(form)">
+        <!-- Mostrar mensaje de error global -->
+        <div *ngIf="mensajeErrorGeneral" class="error-global">
+            <p>{{ mensajeErrorGeneral }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="idCita">ID de la Cita</label>
+            <input type="number" id="idCita" [(ngModel)]="idCita" name="idCita" required />
+        </div>
+
+        <div class="form-group">
+            <label for="comentario">Comentario</label>
+            <input type="text" id="comentario" [(ngModel)]="comentario" name="comentario" required />
+        </div>
+
+        <div class="form-group">
+            <label for="valoracion">Valoración</label>
+            <select id="valoracion" [(ngModel)]="valoracion" name="valoracion" required>
+                <option value="1.0">1.0</option>
+                <option value="1.5">1.5</option>
+                <option value="2.0">2.0</option>
+                <option value="2.5">2.5</option>
+                <option value="3.0">3.0</option>
+                <option value="3.5">3.5</option>
+                <option value="4.0">4.0</option>
+                <option value="4.5">4.5</option>
+                <option value="5.0">5.0</option>
+            </select>
+        </div>
+
+        <div class="botones-contenedor">
+            <button (click)="volver()" type="button" class="Boton">Volver</button>
+            <button type="submit" class="Boton" [disabled]="form.invalid">Crear Valoración</button>
+        </div>
+    </form>
+</div>

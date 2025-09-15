@@ -1,0 +1,202 @@
+
+h2 {
+    font-family: 'Arial', sans-serif;
+    color: #d32f2f;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+th {
+    font-weight: bold;
+    text-align: justify;
+}
+
+
+mat-form-field {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+}
+
+
+.mat-elevation-z8 {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+div {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+div p {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+
+div p strong {
+    color: #d32f2f;
+}
+
+.Boton,
+mat-button,
+.btn-borrado,
+.btn-borradoSecundario {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 16px;
+    color: #d32f2f;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    background-color: white;
+    border: 2px solid #d32f2f;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+}
+
+.Boton:hover,
+.btn-borrado:hover,
+.btn-borradoSecundario:hover {
+    background-color: #d32f2f;
+    color: white;
+}
+
+
+.botones-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.botones-inferiores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
+    box-shadow: 0 0;
+    gap: 20px;
+}
+
+.botones-superiores {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
+    border: none;
+    margin-right: 10px;
+}
+
+.filtro {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+.confirmacion-eliminacion {
+    margin-top: 15px;
+    text-align: center;
+    background-color: #f8d7da;
+    padding: 10px 15px;
+    border: 2px solid #dc3545;
+    border-radius: 8px;
+    color: #721c24;
+}
+
+.confirmacion-eliminacion p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+.mensaje {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    padding: 10px;
+}
+
+.mensaje span {
+    font-style: italic;
+    color: black;
+}
+
+
+
+@media (max-width: 768px) {
+    mat-form-field {
+        width: 80%;
+    }
+
+    .mat-elevation-z8 {
+        max-width: 100%;
+    }
+
+    div {
+        padding: 15px;
+
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .col-id {
+        display: none;
+    }
+}
+
+
+
+@media (max-width: 597px) {
+    .col-estado, .col-hora  {
+        display: none;
+    }
+}
+
+@media (max-width: 411px) {
+    .col-fecha  {
+        display: none;
+    }
+}
+
+@media (max-width: 524px) {
+    .col-filtros  {
+        display: none;
+    }
+}
+
+@media (max-width: 775px) {
+    .accion {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}

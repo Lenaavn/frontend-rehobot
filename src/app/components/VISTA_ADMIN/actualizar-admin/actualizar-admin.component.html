@@ -1,0 +1,43 @@
+<div class="form-container">
+  <h2>Actualizar Usuario</h2>
+  <p>Si deseas actualizar algún campo, cambia su valor. De lo contrario, deja los campos como están y envía el formulario.</p>
+
+  <form #form="ngForm" (ngSubmit)="actualizarUsuario(form)">
+    <!-- Mostrar mensaje de error global -->
+    <div *ngIf="mensajeErrorGeneral" class="error-global">
+      <p>{{ mensajeErrorGeneral }}</p>
+    </div>
+
+    <!-- Campo ID oculto (se envía en la solicitud pero no se muestra) -->
+    <input type="hidden" [(ngModel)]="usuario.id" name="id" />
+
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" [(ngModel)]="usuario.nombre" name="nombre" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" [(ngModel)]="usuario.email" name="email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="telefono">Teléfono</label>
+      <input type="text" id="telefono" [(ngModel)]="usuario.telefono" name="telefono" required />
+    </div>
+
+    <div class="form-group">
+      <label for="contrasena">Contraseña</label>
+      <input type="password" id="contrasena" [(ngModel)]="usuario.contrasena" name="contrasena"
+        placeholder="Introduce una nueva contraseña o deja la actual" required />
+    </div>
+
+    <!-- Campo Rol oculto (se envía en la solicitud pero no se muestra) -->
+    <input type="hidden" [(ngModel)]="usuario.rol" name="rol" />
+
+    <div class="botones-contenedor">
+      <button (click)="volver()" type="button" class="Boton">Volver</button>
+      <button type="submit" class="Boton" [disabled]="form.invalid">Actualizar Usuario</button>
+    </div>
+  </form>
+</div>

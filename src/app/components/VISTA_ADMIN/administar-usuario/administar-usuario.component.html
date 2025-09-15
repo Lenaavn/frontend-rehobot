@@ -1,0 +1,32 @@
+<br>
+<div class="user-detail-container">
+<div *ngIf="usuarioDetalle as user">
+    <h2>Detalles de {{ user.nombre }} </h2>
+    <p><strong>Nombre:</strong> {{ user.nombre }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Teléfono:</strong> {{ user.telefono }}</p>
+    <p><strong>Rol:</strong> {{ user.rol }}</p>
+
+    <div *ngIf="user.vehiculos && user.vehiculos.length > 0; else sinVehiculos">
+        <p><strong>Vehículos:</strong></p>
+        <hr>
+        <ul>
+            <li *ngFor="let v of user.vehiculos">
+                <p>Marca: {{ v.marca }}</p>
+                <p>Modelo: {{ v.modelo }}</p>
+                <p>Matrícula: {{ v.matricula }}</p>
+                <hr>
+            </li>
+        </ul>
+    </div>
+
+    <ng-template #sinVehiculos>
+        <p><em>Sin vehículos registrados.</em></p>
+    </ng-template>
+</div>
+
+<div class="botones-inferiores">
+    <button class="Boton" (click)="volver()">Volver</button>
+    <button class="Boton" (click)="actualizar()">Actualizar</button>
+</div>
+</div>

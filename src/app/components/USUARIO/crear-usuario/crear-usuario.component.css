@@ -1,0 +1,108 @@
+div {
+  background-color: #fff; 
+  border: 1px solid #ccc; 
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  margin-bottom: 20px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-container {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #f9f9f9; 
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #d32f2f; 
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc; 
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box; 
+}
+
+.Boton {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 16px;
+  color: #d32f2f;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  background-color: white;
+  border: 2px solid #d32f2f;
+  border-radius: 6px;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  text-align: center;
+  width: 150px; 
+}
+
+.Boton:hover {
+  background-color: #d32f2f;
+  color: white;
+}
+
+.botones-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; 
+}
+
+.error-global {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+}
+
+.error-global p {
+  margin: 0;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  div {
+      padding: 15px;
+
+  }
+
+  h2 {
+      font-size: 24px;
+  }
+
+  button {
+      width: 100%;
+      font-size: 14px;
+  }
+}

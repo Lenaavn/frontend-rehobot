@@ -1,0 +1,85 @@
+<div class="form-container">
+    <h2>AGENDAR CITA</h2>
+
+    <form #form="ngForm" (ngSubmit)="crearCita(form)">
+
+        <div *ngIf="mensajeErrorGeneral" class="error-global">
+            <p>{{ mensajeErrorGeneral }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="vehiculo">Vehículo</label>
+            <select id="vehiculo" [(ngModel)]="idVehiculo" name="idVehiculo" required>
+                <option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">
+                    {{ vehiculo.marca }} {{ vehiculo.modelo }} ({{ vehiculo.matricula }})
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="servicio">Servicio</label>
+            <select id="servicio" [(ngModel)]="idServicio" name="idServicio" (change)="ServicioSeleccionado()" required>
+                <option *ngFor="let servicio of servicios" [value]="servicio.id">
+                    {{ servicio.nombre | formatEnum }}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="fecha">Selecciona una fecha</label>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button class="flechas" (click)="cambiarMes(-1)">◀</button>
+                    <span>{{ meses[currentMonth] }} {{ currentYear }}</span>
+                    <button class="flechas" (click)="cambiarMes(1)">▶</button>
+                </div>
+                <table class="calendar">
+                    <thead>
+                        <tr>
+                            <th class="disabled">Dom</th>
+                            <th>Lun</th>
+                            <th>Mar</th>
+                            <th>Mié</th>
+                            <th>Jue</th>
+                            <th>Vie</th>
+                            <th class="disabled">Sáb</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let semana of semanas">
+                            <td *ngFor="let dia of semana"
+                                [ngClass]="{ 'disabled': !esDiaHabil(dia), 'seleccionadatabla': fecha?.getDate() === dia && fecha?.getMonth() === currentMonth }"
+                                (click)="seleccionarFecha(dia)">
+                                {{ dia !== null ? dia : '' }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Mensaje si no hay fecha seleccionada -->
+        <div class="form-group" *ngIf="!fecha">
+            <p class="info">Selecciona un servicio y una fecha para ver los horarios disponibles</p>
+        </div>
+
+        <!-- Mostrar horarios solo si hay fecha seleccionada -->
+        <div class="form-group" *ngIf="fecha">
+            <label>Selecciona una Hora</label>
+            <div class="horarios">
+                <button type="button" *ngFor="let h of horariosDisponibles" [disabled]="!esHorarioDisponible(h)"
+                    (click)="seleccionarHora(h)" [ngClass]="{ 'seleccionada': hora === h, 'disponible': esHorarioDisponible(h), 
+            'ocupado': horariosOcupados.includes(h), 'no-disponible': !esHorarioDisponible(h) && !horariosOcupados.includes(h)}">
+                    {{ h }}
+                </button>
+
+            </div>
+        </div>
+
+        <div class="botones-contenedor">
+            <button (click)="volver()" type="button" class="Boton">Volver</button>
+            <button type="submit" class="Boton" [disabled]="form.invalid">Pedir Cita</button>
+        </div>
+
+    </form>
+</div>

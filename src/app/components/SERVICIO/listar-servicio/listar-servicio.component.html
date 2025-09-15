@@ -1,0 +1,71 @@
+<h2>Lista de Servicios</h2>
+
+<!-- Filtro de búsqueda -->
+<mat-form-field>
+    <mat-label>Buscar Servicios</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar por nombre o precio" #input>
+</mat-form-field>
+
+<!-- Tabla de servicios -->
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-id"> ID </th>
+            <td mat-cell *matCellDef="let servicio" class="col-id"> {{ servicio.id }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-nombre"> Nombre </th>
+            <td mat-cell *matCellDef="let servicio" class="col-nombre"> {{ servicio.nombre }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-descripcion"> Descripción </th>
+            <td mat-cell *matCellDef="let servicio" class="col-descripcion"> {{ servicio.descripcion }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-precio"> Precio (€) </th>
+            <td mat-cell *matCellDef="let servicio" class="col-precio"> {{ servicio.precio }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let servicio">
+                <button class="Boton accion" [routerLink]="['/desktop/servicios', servicio.id]">Detalles</button>
+                <button class="Boton accion" (click)="actualizarUnServicio(servicio.id)">Actualizar</button>
+                <button class="Boton accion" (click)="confirmarEliminacion(servicio.id)">Eliminar</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let servicio; columns: displayedColumns;"></tr>
+
+        <!-- Mensaje si no hay datos -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5" class="mensaje">
+                <span>No hay servicios que coincidan con "{{input.value}}"</span>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Paginador -->
+    <mat-paginator [pageSizeOptions]="[2, 5, 10, 25, 50, 100]" [pageSize]="10"
+        aria-label="Seleccionar cantidad de servicios"></mat-paginator>
+</div>
+
+<!-- Confirmación de eliminación -->
+<ng-container *ngIf="servicioAEliminar !== null">
+    <div class="confirmacion-eliminacion">
+        <p>¿Estás seguro de que deseas eliminar este servicio?</p>
+        <button mat-button (click)="eliminarServicio()">Sí, eliminar</button>
+        <button mat-button (click)="cancelarEliminacion()">Cancelar</button>
+    </div>
+</ng-container>
+
+<!-- Botones inferiores -->
+<div class="botones-inferiores">
+    <button class="Boton" (click)="volverAlInicio()">Volver</button>
+    <button class="Boton" (click)="crearUnServicio()">Crear Servicio</button>
+</div>

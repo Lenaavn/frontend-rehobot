@@ -1,0 +1,111 @@
+<h2>Lista de Citas</h2>
+
+<!-- Filtro de búsqueda -->
+<mat-form-field>
+    <mat-label>Buscar Citas</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar por vehículo o usuario" #input>
+</mat-form-field>
+
+<!-- Tabla de citas -->
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Fecha de la cita -->
+        <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+            <td mat-cell *matCellDef="let cita"> {{ cita.fecha | date:'dd/MM/yyyy' }} </td>
+        </ng-container>
+
+        <!-- Hora de la cita -->
+        <ng-container matColumnDef="hora">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-hora"> Hora </th>
+            <td mat-cell *matCellDef="let cita" class="col-hora"> {{ cita.hora }} </td>
+        </ng-container>
+
+        <!-- Estado de la cita -->
+        <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-estado"> Estado </th>
+            <td mat-cell *matCellDef="let cita" class="col-estado"> {{ cita.estado | formatEnum }} </td>
+        </ng-container>
+
+        <!-- Acciones -->
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let cita">
+                <button class="Boton accion" (click)="detalleCita(cita.id)">Detalles</button>
+
+                <button matTooltip="Una vez hayas pagado y esté registrada la cita podrás valorarla"
+                    [matTooltipDisabled]="cita.estado === 'PAGADA'" class="Boton valoracion accion"
+                    [disabled]="cita.estado !== 'PAGADA'" (click)="valorarCita(cita.id)">
+                    <img *ngIf="cita.estado !== 'PAGADA'" src="/images/candado.png" alt="Candado rojo">
+                    <span *ngIf="cita.estado === 'PAGADA'">Valorar</span>
+                </button>
+
+
+                <button matTooltip="No se puede eliminar una cita a menos de 2 horas de la citación" 
+                class="Boton accion" *ngIf="cita.estado !== 'PAGADA' && !citaCercana(cita.fecha, cita.hora)"
+                (click)="confirmarEliminacion(cita.id)">Eliminar</button>
+                    
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let cita; columns: displayedColumns;"></tr>
+
+        <!-- Mensaje si no hay citas registradas aún -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5" class="mensaje">
+                <span>{{
+                    filtrandoHoy ? 'Aún no hay citas para hoy' :
+                    filtrandoPagadas ? 'Aún no hay citas pagadas' :
+                    filtrandoNoPagadas ? 'Aún no hay citas no pagadas' :
+                    (dataSource.data.length === 0 && !input.value ? 'Aún no hay citas registradas' :
+                    'No hay citas que coincidan con "' + input.value + '"')
+                    }}</span>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Paginador -->
+    <mat-paginator [pageSizeOptions]="[2, 5, 10, 25, 50, 100]" [pageSize]="10"
+        aria-label="Seleccionar cantidad de citas"></mat-paginator>
+
+    <!-- Filtros para alternar entre diferentes tipos de citas -->
+    <mat-button-toggle-group class="botones-superiores">
+        <mat-button-toggle [disabled]="filtrandoPagadas" (click)="filtrarCitasPagadas()" class="filtro col-filtros">
+            Mostrar Pagadas
+        </mat-button-toggle>
+        <mat-button-toggle *ngIf="filtrandoPagadas" (click)="resetearFiltro()" class="filtro">
+            Quitar Filtro
+        </mat-button-toggle>
+
+        <mat-button-toggle [disabled]="filtrandoNoPagadas" (click)="filtrarCitasNoPagadas()" class="filtro col-filtros">
+            Mostrar No Pagadas
+        </mat-button-toggle>
+        <mat-button-toggle *ngIf="filtrandoNoPagadas" (click)="resetearFiltro()" class="filtro">
+            Quitar Filtro
+        </mat-button-toggle>
+
+        <mat-button-toggle [disabled]="filtrandoHoy" (click)="filtrarCitasHoy()" class="filtro">
+            Mostrar Citas de Hoy
+        </mat-button-toggle>
+        <mat-button-toggle *ngIf="filtrandoHoy" (click)="resetearFiltro()" class="filtro">
+            Quitar Filtro
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+
+</div>
+
+<!-- Confirmación de eliminación -->
+<ng-container *ngIf="citaAEliminar !== null">
+    <div class="confirmacion-eliminacion">
+        <p>¿Estás seguro de que deseas eliminar esta cita?</p>
+        <button mat-button (click)="eliminarCita()">Sí, eliminar</button>
+        <button mat-button (click)="cancelarEliminacion()">Cancelar</button>
+    </div>
+</ng-container>
+
+<!-- Botones inferiores -->
+<div class="botones-inferiores">
+    <button class="Boton" (click)="volverAlInicio()">Volver</button>
+    <button class="Boton" (click)="crearUnaCita()">Pedir Cita</button>
+</div>

@@ -1,0 +1,55 @@
+<div class="form-container">
+    <h2>Iniciar Sesión</h2>
+    <form #form="ngForm" (ngSubmit)="login()" novalidate>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" [(ngModel)]="credenciales.email" name="email" placeholder="Escribe tu email" required>
+        </div>
+        <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <div class="password-container">
+                <input [type]="mostrarContrasenaLogin ? 'text' : 'password'" [(ngModel)]="credenciales.contrasena"
+                    name="contrasena" placeholder="Escribe tu contraseña" required>
+                <button type="button" class="toggle-password" (click)="toggleMostrarContrasenaLogin()">
+                    <img [src]="mostrarContrasenaLogin ? 'images/ocultar.png' : 'images/ver.png'" alt="Mostrar/Ocultar">
+                </button>
+            </div>
+        </div>
+        <button type="submit" class="Boton" [disabled]="form.invalid">Iniciar sesión</button>
+    </form>
+    <br>
+    <div class="form-group">
+        <p>¿No tienes cuenta? <a routerLink="/register">Regístrate aquí</a></p>
+        <p class="contrasena"><a (click)="toggleFormularioRecuperacion()">¿Has olvidado tu contraseña?</a></p>
+    </div>
+
+    <div *ngIf="mostrarFormularioRecuperacion" class="form-recuperacion">
+        <h3>Recuperar Contraseña</h3>
+        <form #formRecuperacion="ngForm" (ngSubmit)="recuperarContrasena()" novalidate>
+            <div class="form-group">
+                <label for="emailRecuperacion">Email</label>
+                <input type="email" [(ngModel)]="emailRecuperacion" name="emailRecuperacion"
+                    placeholder="Escribe tu email" required>
+            </div>
+            <div class="form-group" id="password-container">
+                <input [type]="mostrarContrasenaRecuperacion ? 'text' : 'password'"
+                    [(ngModel)]="nuevaContrasenaRecuperacion" name="nuevaContrasenaRecuperacion"
+                    placeholder="Escribe tu nueva contraseña" required>
+                <button type="button" class="toggle-password" (click)="toggleMostrarContrasenaRecuperacion()">
+                    <img [src]="mostrarContrasenaRecuperacion ? 'images/ocultar.png' : 'images/ver.png'"
+                        alt="Mostrar/Ocultar">
+                </button>
+            </div>
+            <button type="submit" class="Boton" [disabled]="formRecuperacion.invalid">Actualizar Contraseña</button>
+        </form>
+    </div>
+
+    <div *ngIf="mensajeErrorGeneral2" class="error-global2">
+        <p>{{ mensajeErrorGeneral2 }}</p>
+    </div>
+    <div *ngIf="mensajeErrorGeneral" class="error-global">
+        <p>{{ mensajeErrorGeneral }}</p>
+    </div>
+    <br>
+        <button class="Boton" (click)="volverAlInicio()">Volver</button>
+</div>

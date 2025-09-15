@@ -1,0 +1,70 @@
+<h2>Lista de Pagos</h2>
+
+<!-- Filtro de búsqueda -->
+<mat-form-field>
+    <mat-label>Buscar Pagos</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar por método de pago o monto" #input>
+</mat-form-field>
+
+<!-- Tabla de pagos -->
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-id"> ID </th>
+            <td mat-cell *matCellDef="let pago" class="col-id"> {{ pago.id }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="idCita">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-cita"> ID Cita </th>
+            <td mat-cell *matCellDef="let pago" class="col-cita"> {{ pago.idCita }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-monto"> Monto (€) </th>
+            <td mat-cell *matCellDef="let pago" class="col-monto" > {{ pago.monto }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="metodoPago">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-metodo"> Método de Pago </th>
+            <td mat-cell *matCellDef="let pago" class="col-metodo" > {{ pago.metodoPago }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let pago">
+                <button class="Boton accion" [routerLink]="['/desktop/pagos', pago.id]">Detalles</button>
+                <button class="Boton accion" (click)="actualizarUnPago(pago.id)">Actualizar Pago</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let pago; columns: displayedColumns;"></tr>
+
+        <!-- Mensaje -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5" class="mensaje">
+                <span>{{ dataSource.data.length === 0 && !input.value ? 'Aún no
+                    hay pagos registrados' : 'No hay pagos que coincidan con "' + input.value + '"' }}</span>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Paginador -->
+    <mat-paginator [pageSizeOptions]="[2, 5, 10, 25, 50, 100]" [pageSize]="10"
+        aria-label="Seleccionar cantidad de pagos"></mat-paginator>
+</div>
+
+<!-- Confirmación de actualización -->
+<ng-container *ngIf="pagoAActualizar !== null">
+    <div class="confirmacion-eliminacion">
+        <p>¿Estás seguro de que deseas actualizar el método de pago?</p>
+        <button mat-button (click)="actualizarMetodoPago(pagoAActualizar, 'NuevoMétodo')">Sí, actualizar</button>
+        <button mat-button (click)="cancelarActualizacion()">Cancelar</button>
+    </div>
+</ng-container>
+
+<!-- Botones inferiores -->
+<div class="botones-inferiores">
+    <button class="Boton" (click)="volverAlInicio()">Volver</button>
+</div>

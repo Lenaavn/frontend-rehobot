@@ -1,0 +1,34 @@
+<header>
+    <div class="logo-container"> 
+        <img src="/images/logo.png" alt="Logo de la Empresa" class="logo" routerLink="/dashboard" />
+    </div>
+
+    <div class="bottom-bar"> 
+        <span class="material-symbols-outlined person-icon" (click)="togglePersonMenu()">person</span>
+        <span class="material-symbols-outlined menu-icon" (click)="toggleMenu()">menu</span>
+    </div>
+</header>
+
+<!-- Contenedor general para los menús -->
+<div class="dropdowns-container" [class.active]="mostrarSombra">
+    <!-- Contenedor del menú de usuario -->
+    <div class="dropdowns">
+        <div class="dropdown person-dropdown" [class.active]="mostrarPersonMenu">
+            <a [routerLink]="['/dashboard/administrador']">Información usuario</a>
+            <a class="logout" (click)="logout()">Cerrar sesión</a>
+        </div>
+    </div>
+
+    <!-- Contenedor del menú de opciones -->
+    <div class="dropdowns">
+        <div class="dropdown menu-dropdown" [class.active]="mostrarMenu">
+            <a [routerLink]="['/dashboard/vehiculos']">Vehículos</a>
+            <a [routerLink]="['/dashboard/citas']">Citas</a>
+            <a [routerLink]="['/dashboard/pagos']">Pagos</a>
+            <a [routerLink]="['/dashboard/valoraciones']">Valoraciones</a>
+        </div>
+    </div>
+</div>
+
+<!-- Google Fonts para los iconos -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />

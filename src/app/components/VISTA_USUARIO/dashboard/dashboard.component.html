@@ -1,0 +1,79 @@
+<div id="dashboard-container">
+    <div class="dashboard-grid">
+        <!-- Columna Izquierda: Bienvenida en recuadro -->
+        <div class="dashboard-left">
+            <header>
+                <h1>Bienvenido, <br><span id="usuario-nombre">{{ usuarioNombre }}</span></h1>
+                <br>
+                <p>En <strong>Rehobot</strong> te ofrecemos la mejor experiencia para el cuidado de tu vehículo.</p>
+                <br>
+                <p>◾ Aquí podrás gestionar tus citas, valoraciones y pagos de manera sencilla y rápida.</p>
+                <br>
+                <p>◾ ¡Explora todas nuestras opciones y disfruta de un servicio excepcional!</p>
+                <br>
+                <p>◾ Si tienes alguna duda, no dudes en contactarnos.</p>
+            </header>
+        </div>
+
+        <!-- Columna Derecha: Opciones -->
+        <div class="dashboard-right">
+            <div class="dashboard-item">
+                <h2 class="h2">Tus Vehículos</h2>
+                <img src="/images/carro-deportivo.gif" alt="Tus Vehículos">
+                <button (click)="irVehiculo()">Tus Vehículos</button>
+            </div>
+
+            <div class="dashboard-item">
+                <h2 class="h2">Tus Citas</h2>
+                <img src="/images/programar.png" alt="Tus Citas">
+                <button (click)="irCitas()">Tus Citas</button>
+            </div>
+
+            <div class="dashboard-item">
+                <h2 class="h2">Tus Valoraciones</h2>
+                <img src="/images/valoracion.png" alt="Tus Valoraciones">
+                <button (click)="irValoraciones()">Tus Valoraciones</button>
+            </div>
+
+            <div class="dashboard-item">
+                <h2 class="h2">Tus Pagos</h2>
+                <img src="/images/salario.png" alt="Tus Pagos">
+                <button (click)="irPagos()">Tus Pagos</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrusel de imágenes y valoraciones debajo -->
+    <div class="dashboard-bottom">
+        <section id="carrusel-fotos">
+            <swiper-container class="fotos" slides-per-view="1" pagination="true"
+                autoplay='{"delay": 5000, "disableOnInteraction": false}'>
+                <swiper-slide><img src="/images/RehoImg2.jfif" alt="Foto 2"></swiper-slide>
+                <swiper-slide><img src="/images/RehoImg3.jfif" alt="Foto 3"></swiper-slide>
+                <swiper-slide><img src="/images/RehoImg4.jfif" alt="Foto 4"></swiper-slide>
+                <swiper-slide><img src="/images/RehoImg5.jfif" alt="Foto 5"></swiper-slide>
+            </swiper-container>
+        </section>
+
+        <section id="top-valoraciones">
+            <h2 class="h2">Top 5 Valoraciones</h2>
+            <ng-container *ngIf="topValoraciones.length > 0; else noValoraciones">
+                <swiper-container class="valoraciones" slides-per-view="1" pagination="true"
+                    autoplay='{"delay": 5000, "disableOnInteraction": false}'>
+                    <swiper-slide *ngFor="let valoracion of topValoraciones">
+                        <p class="valoracion-texto col-servicio"><strong>Servicio:</strong> {{ valoracion.servicio | formatEnum }}</p>
+                        <p class="valoracion-texto"><strong>Usuario:</strong> {{ valoracion.nombreUsuario }}</p>
+                        <p class="valoracion-texto"><strong>Comentario:</strong> {{ valoracion.comentario }}</p>
+                        <p class="valoracion-texto"><strong>Valoración:</strong> {{ valoracion.valoracion }} ⭐</p>
+                    </swiper-slide>
+                </swiper-container>
+            </ng-container>
+            
+            <!-- Mensaje alternativo si no hay valoraciones -->
+            <ng-template #noValoraciones>
+                <p class="mensaje">No hay valoraciones registradas aún.</p>
+            </ng-template>
+
+        </section>
+    </div>
+</div>

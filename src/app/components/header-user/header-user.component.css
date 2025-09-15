@@ -1,0 +1,106 @@
+/* Estilo para el encabezado */
+header {
+    background-color: #222; 
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+}
+
+/* Contenedor para el logo */
+.logo-container {
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+/* Estilo para el logo */
+.logo {
+    max-width: 200px; 
+    height: auto;
+    filter: drop-shadow(10px 10px 40px white);
+    cursor: pointer;
+}
+
+/* Franja roja abajo del header con los iconos */
+.bottom-bar {
+    background-color: #d32f2f;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 10px 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-bottom: 1px solid white;
+}
+
+/* Estilo para los iconos */
+.material-symbols-outlined {
+    font-size: 25px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.material-symbols-outlined:hover {
+    color:#861d1d;
+}
+
+/* Contenedor general de los menús */
+.dropdowns-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 224px;
+    right: 0px;
+    width: 250px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column; 
+}
+
+.dropdowns-container.active {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.45);
+    background-color: white;
+}
+
+/* Ocultar los menús si no están activos */
+.person-dropdown,
+.menu-dropdown {
+    display: none;
+}
+
+/* Mostrar el menú cuando esté activo */
+.person-dropdown.active,
+.menu-dropdown.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Estilos de los enlaces */
+.dropdown a {
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #222;
+    background-color: #fafafa;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    text-align: center;
+    width: 60%;
+    transition: all 0.3s ease;
+}
+
+.dropdown a:hover {
+    background-color: #534848;
+    color: white;
+    transform: scale(1.05);
+}
+
+
+.logout {
+    cursor: pointer;
+}

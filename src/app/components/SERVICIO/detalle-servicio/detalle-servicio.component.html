@@ -1,0 +1,14 @@
+<br>
+
+<div class="detalle-container">
+    <h2>Detalles del Servicio</h2>
+
+    <div *ngIf="servicioDetalle">
+        <p><strong>ID:</strong> {{ servicioDetalle.id }}</p>
+        <p><strong>Nombre:</strong> {{ servicioDetalle.nombre }}</p>
+        <p><strong>Descripción:</strong> {{ servicioDetalle.descripcion }}</p>
+        <p><strong>Precio:</strong> {{ servicioDetalle.precio }} €</p>
+    </div>
+
+    <button (click)="volverALista()" class="Boton">Volver a la lista de servicios</button>
+</div>

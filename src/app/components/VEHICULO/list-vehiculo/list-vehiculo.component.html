@@ -1,0 +1,85 @@
+<h2>Lista de Vehículos</h2>
+
+<!-- Filtro de búsqueda -->
+<mat-form-field>
+  <mat-label>Buscar Vehículos</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Buscar por matrícula o marca" #input>
+</mat-form-field>
+
+<!-- Tabla de vehículos -->
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-id"> ID </th>
+      <td mat-cell *matCellDef="let vehiculo" class="col-id"> {{vehiculo.id}} </td>
+    </ng-container>
+
+    <!-- Marca -->
+    <ng-container matColumnDef="marca">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-marca"> Marca </th>
+      <td mat-cell *matCellDef="let vehiculo" class="col-marca"> {{vehiculo.marca}} </td>
+    </ng-container>
+
+    <!-- Modelo -->
+    <ng-container matColumnDef="modelo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-modelo"> Modelo </th>
+      <td mat-cell *matCellDef="let vehiculo" class="col-modelo"> {{vehiculo.modelo}} </td>
+    </ng-container>
+
+    <!-- Matrícula -->
+    <ng-container matColumnDef="matricula">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Matrícula </th>
+      <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.matricula}} </td>
+    </ng-container>
+
+    <!-- Acciones -->
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let vehiculo">
+        <button class="Boton accion" [routerLink]="['/desktop/vehiculos', vehiculo.id]">Detalles</button>
+        <button class="Boton accion" (click)="confirmarEliminacion(vehiculo.id)">Eliminar</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let vehiculo; columns: displayedColumns;"></tr>
+
+    <!-- Mensaje -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5" class="mensaje">
+                <span>{{ dataSource.data.length === 0 && !input.value ? 'Aún no
+                    hay vehículos registrados' : 'No hay vehículos que coincidan con "' + input.value + '"' }}</span>
+            </td>
+        </tr>
+  </table>
+
+  <!-- Paginador -->
+  <mat-paginator [pageSizeOptions]="[2, 5, 10, 25, 50, 100]" [pageSize]="10"
+    aria-label="Seleccionar cantidad de vehículos"></mat-paginator>
+
+  <!-- Filtro alfabético (si quisieras añadirlo más adelante) -->
+  <!--
+  <mat-button-toggle-group class="botones-superiores">
+    <mat-button-toggle [disabled]="ordenAlfabActivado" (click)="ordenarAlfabeticamente()" class="filtro">Ordenar
+      Alfabéticamente</mat-button-toggle>
+    <mat-button-toggle *ngIf="ordenAlfabActivado" (click)="resetearOrden()" class="filtro">Quitar Filtro</mat-button-toggle>
+  </mat-button-toggle-group>
+  -->
+</div>
+
+<!-- Confirmación de eliminación -->
+<ng-container *ngIf="vehiculoAEliminar !== null">
+  <div class="confirmacion-eliminacion">
+    <p>¿Estás seguro de que deseas eliminar este vehículo?</p>
+    <button mat-button (click)="eliminarVehiculo()">Sí, eliminar</button>
+    <button mat-button (click)="cancelarEliminacion()">Cancelar</button>
+  </div>
+</ng-container>
+
+<!-- Botones inferiores -->
+<div class="botones-inferiores">
+  <button class="Boton" (click)="volverAlInicio()">Volver</button>
+  <button class="Boton" (click)="crearVehiculo()">Crear Vehículo</button>
+</div>

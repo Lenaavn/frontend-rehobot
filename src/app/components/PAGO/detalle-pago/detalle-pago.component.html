@@ -1,0 +1,11 @@
+<br>
+<h2>Detalles del Pago</h2>
+
+<div *ngIf="pagoDetalle as pago">
+  <p><strong>ID:</strong> {{ pago.id }}</p>
+  <p><strong>ID Cita:</strong> {{ pago.idCita }}</p>
+  <p><strong>Monto:</strong> {{ pago.monto }} €</p>
+  <p><strong>Método de Pago:</strong> {{ pago.metodoPago }}</p>
+
+  <button (click)="volverALista()" class="Boton">Volver a la lista de pagos</button>
+</div>

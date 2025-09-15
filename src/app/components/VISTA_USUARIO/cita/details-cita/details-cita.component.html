@@ -1,0 +1,14 @@
+<br>
+
+<div *ngIf="citaDetalle as cita">
+  <h2>Detalles de la Cita</h2>
+  <p><strong>ID:</strong> {{ cita.id }}</p>
+  <p><strong>Usuario:</strong> {{ cita.nombreUsuario }}</p>
+  <p><strong>Vehículo:</strong> {{ cita.vehiculo }}</p>
+  <p><strong>Servicio:</strong> {{ cita.servicio | formatEnum }}</p>
+  <p><strong>Fecha:</strong> {{ cita.fecha | date:'dd/MM/yyyy' }} </p>
+  <p><strong>Hora:</strong> {{ cita.hora }}</p>
+  <p><strong>Estado:</strong> {{ cita.estado }}</p>
+</div>
+
+<button (click)="volverALista()">Volver a mis citas</button>

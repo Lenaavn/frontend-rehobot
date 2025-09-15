@@ -1,0 +1,19 @@
+<div id="page-container">
+    <ng-container *ngIf="headerType === 'default'">
+        <app-header></app-header>
+    </ng-container>
+
+    <ng-container *ngIf="headerType === 'user'">
+        <app-header-user></app-header-user>
+    </ng-container>
+
+    <ng-container *ngIf="headerType === 'admin'">
+        <app-header-admin></app-header-admin>
+    </ng-container>
+
+    <div id="content-wrap">
+        <router-outlet></router-outlet>
+    </div>
+
+    <app-footer></app-footer>
+</div>

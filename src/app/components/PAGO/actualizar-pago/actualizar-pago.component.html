@@ -1,0 +1,40 @@
+<div class="form-container">
+    <h2>Actualizar Método de Pago</h2>
+
+    <div *ngIf="mensajeErrorGeneral" class="error-global">
+        <p>{{ mensajeErrorGeneral }}</p>
+    </div>
+
+    <div *ngIf="pago">
+        <p><strong>ID Pago:</strong> {{ pago.id }}</p>
+        <p><strong>ID Cita:</strong> {{ pago.idCita }}</p>
+        <p><strong>Monto:</strong> {{ pago.monto }}</p>
+        
+        <!-- Mostrar mensaje si no se puede actualizar -->
+        <div *ngIf="!esEditable" class="error-global">
+            <p>Este pago está marcado como <strong>SIN_DETERMINAR</strong> y no puede actualizarse.</p>
+        </div>
+
+        <!-- Formulario para actualizar solo el método de pago -->
+        <form *ngIf="esEditable" #form="ngForm" (ngSubmit)="actualizarPago(form)">
+            <div class="form-group">
+                <label for="metodoPago">Método de Pago</label>
+                <select id="metodoPago" [(ngModel)]="pago.metodoPago" name="metodoPago" required>
+                    <option value="EFECTIVO">Efectivo</option>
+                    <option value="TARJETA">Tarjeta</option>
+                </select>
+            </div>
+
+            <div class="botones-contenedor">
+                <button (click)="volver()" class="Boton">Volver</button>
+                <button type="submit" class="Boton">Actualizar Pago</button>
+            </div>
+
+        </form>
+
+        <!-- Botón Volver siempre visible -->
+        <div *ngIf="!esEditable" class="botones-contenedor">
+            <button (click)="volver()" class="Boton">Volver</button>
+        </div>
+    </div>
+</div>

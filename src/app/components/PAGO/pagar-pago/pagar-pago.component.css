@@ -1,0 +1,97 @@
+/* Estilo para el título */
+h2 {
+    font-family: 'Arial', sans-serif;
+    color: #d32f2f;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Estilo para el contenedor de cada usuario */
+div {
+    margin-top: 30px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo para cada párrafo dentro de un usuario */
+div p {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Resaltar los encabezados de cada campo (ID, Nombre, etc.) */
+div p strong {
+    color: #d32f2f;
+}
+
+/* Estilos para los botones */
+.Boton {
+    display: inline-block;
+    margin: 5px;
+    font-size: 16px;
+    color: #d32f2f;
+    font-weight: bold;
+    padding: 10px 18px;
+    background-color: white;
+    border: 2px solid #d32f2f;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    text-align: center;
+    width: 160px;
+}
+
+.Boton:hover {
+    background-color: #d32f2f;
+    color: white;
+}
+
+.botones-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.botones-inferiores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.error-global {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+}
+
+.error-global p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    div {
+        padding: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}

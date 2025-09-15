@@ -1,0 +1,19 @@
+<div>
+    <h2>Realizar Pago</h2>
+    <p><strong>ID del Pago:</strong> {{ idPago }}</p>
+    <p>Selecciona un método de pago:</p>
+
+    <!-- Mostrar mensaje de error global -->
+    <div *ngIf="mensajeErrorGeneral" class="error-global">
+        <p>{{ mensajeErrorGeneral }}</p>
+    </div>
+
+    <div class="botones-contenedor">
+        <button (click)="actualizarMetodoPago('EFECTIVO')" class="Boton">Pagar en efectivo</button>
+        <button (click)="actualizarMetodoPago('TARJETA')" class="Boton">Pagar con tarjeta</button>
+    </div>
+
+    <div class="botones-inferiores">
+        <button (click)="cancelar()" class="Boton">Cancelar</button>
+    </div>
+</div>

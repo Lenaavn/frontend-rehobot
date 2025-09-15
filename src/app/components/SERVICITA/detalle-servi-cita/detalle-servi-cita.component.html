@@ -1,0 +1,13 @@
+<br>
+
+<div *ngIf="serviCitaDetalle as serviCita">
+    <h2>Detalles de la Valoración</h2>
+    <p><strong>ID:</strong> {{ serviCita.id }}</p>
+    <p><strong>ID del Servicio:</strong> {{ serviCita.idServicio }}</p>
+    <p><strong>ID de la Cita:</strong> {{ serviCita.idCita }}</p>
+    <p><strong>Servicio:</strong> {{ serviCita.servicio }}</p>
+    <p><strong>Usuario:</strong> {{ serviCita.nombreUsuario }}</p>
+    <p><strong>Comentario:</strong> {{ serviCita.comentario }}</p>
+    <p><strong>Valoración:</strong> {{ serviCita.valoracion }}</p>
+</div>
+<button (click)="volverALista()">Volver a la lista de valoraciones</button>

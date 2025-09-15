@@ -1,0 +1,67 @@
+<div class="form-container">
+    <h2>Registrar Usuario</h2>
+
+    <form #form="ngForm" (ngSubmit)="register()" novalidate>
+        <!-- Nombre -->
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" [(ngModel)]="usuario.nombre" name="nombre" required placeholder="Escribe tu nombre">
+        </div>
+
+        <!-- Apellidos -->
+        <div class="form-group">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" [(ngModel)]="usuario.apellidos" name="apellidos" required
+                placeholder="Escribe tus apellidos">
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" [(ngModel)]="usuario.email" name="email" required placeholder="Escribe tu email">
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <div class="password-container">
+                <input [type]="mostrarContrasena ? 'text' : 'password'" [(ngModel)]="usuario.contrasena"
+                    name="contrasena" required placeholder="Escribe tu contraseña">
+                <button type="button" (click)="toggleMostrarContrasena()" class="toggle-password">
+                    <img [src]="mostrarContrasena ? 'images/ocultar.png' : 'images/ver.png'" alt="Mostrar/Ocultar">
+                </button>
+            </div>
+        </div>
+
+        <!-- Confirmación de contraseña -->
+        <div class="form-group">
+            <label for="confirmarContrasena">Confirmar Contraseña</label>
+            <div class="password-container">
+                <input [type]="mostrarContrasenaConfirmada ? 'text' : 'password'" [(ngModel)]="contrasenaConfirmacion"
+                    name="confirmarContrasena" required placeholder="Repite tu contraseña">
+                <button type="button" (click)="toggleMostrarContrasenaConfirmada()" class="toggle-password">
+                    <img [src]="mostrarContrasenaConfirmada ? 'images/ocultar.png' : 'images/ver.png'"
+                        alt="Mostrar/Ocultar">
+                </button>
+            </div>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" [(ngModel)]="usuario.telefono" name="telefono" required
+                placeholder="Escribe tu teléfono">
+        </div>
+
+        <!-- Botón de registro -->
+        <button type="submit" class="Boton" [disabled]="form.invalid">Registrarse</button>
+    </form>
+
+    <!-- Mensaje de error -->
+    <div *ngIf="mensajeErrorGeneral" class="error-global">
+        <p>{{ mensajeErrorGeneral }}</p>
+    </div>
+
+    <!-- Botón para volver -->
+    <button class="Boton" (click)="volverAlInicio()">Volver</button>
+</div>

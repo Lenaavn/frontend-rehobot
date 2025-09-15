@@ -1,0 +1,72 @@
+<h2>Lista de Valoraciones</h2>
+
+<mat-form-field>
+  <mat-label>Buscar Valoraciones</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Buscar por usuario o servicio" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let sc"> {{sc.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="servicio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Servicio </th>
+      <td mat-cell *matCellDef="let sc"> {{sc.servicio}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+      <td mat-cell *matCellDef="let sc"> {{sc.nombreUsuario}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="comentario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
+      <td mat-cell *matCellDef="let sc"> {{sc.comentario}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valoracion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Valoración </th>
+      <td mat-cell *matCellDef="let sc"> {{sc.valoracion}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let sc">
+        <button class="Boton accion" [routerLink]="['/desktop/servicitas', sc.id]">Detalles</button>
+        <button class="Boton accion" (click)="confirmarEliminacion(sc.id)">Eliminar</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let sc; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="6">
+        <span>{{ dataSource.data.length === 0 && !input.value ? 'Aún no hay valoraciones registradas' : 'No hay coincidencias para "' + input.value + '"' }}</span>
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[2, 5, 10, 25, 50]" [pageSize]="10"></mat-paginator>
+
+  <mat-button-toggle-group class="botones-superiores">
+    <mat-button-toggle [disabled]="mostrandoTopValoraciones" (click)="filtrarTopCincoValoraciones()">Mostrar Top 5</mat-button-toggle>
+    <mat-button-toggle *ngIf="mostrandoTopValoraciones" (click)="resetearFiltro()">Quitar Filtro</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+
+<ng-container *ngIf="serviCitaAEliminar !== null">
+  <div class="confirmacion-eliminacion">
+    <p>¿Estás seguro de que deseas eliminar esta valoración?</p>
+    <button mat-button (click)="eliminarServiCita()">Sí, eliminar</button>
+    <button mat-button (click)="cancelarEliminacion()">Cancelar</button>
+  </div>
+</ng-container>
+
+<div class="botones-inferiores">
+  <button class="Boton" (click)="volverAlInicio()">Volver</button>
+</div>
