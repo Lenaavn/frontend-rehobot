@@ -7,7 +7,7 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://backend:8080/rehobot/api/auth';
+  private apiUrl = 'http://backend-rehobot.onrender.com:8080/rehobot/api/auth';
 
   constructor(private http: HttpClient) { }
 
