@@ -8,7 +8,7 @@ import { Pago } from '../models/pago';
 })
 export class PagoService {
   
-  private apiUrl = 'http://backend-rehobot.onrender.com:8080/rehobot/api/pagos';
+  private apiUrl = 'http://backend-rehobot.onrender.com/rehobot/api/pagos';
 
   constructor(private httpClient: HttpClient) {}
 

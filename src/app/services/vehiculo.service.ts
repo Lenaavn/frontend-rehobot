@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class VehiculoService {
 
-  private apiUrl = 'http://backend-rehobot.onrender.com:8080/rehobot/api/vehiculos';
+  private apiUrl = 'http://backend-rehobot.onrender.com/rehobot/api/vehiculos';
 
   constructor(private clientHttp: HttpClient) { }
 
