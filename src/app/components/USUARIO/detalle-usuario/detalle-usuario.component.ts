@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';  // Se añadió Router aquí
 import { Usuario } from '../../../models/usuario';
 import { UsuarioService } from '../../../services/usuario.service';
-import { Vehiculo } from '../../../models/vehiculo';
 
 @Component({
   selector: 'app-detalle-usuario',
@@ -16,7 +15,7 @@ export class DetalleUsuarioComponent {
   constructor(
     private userService: UsuarioService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router // Se añadió el Router aquí
   ) {}
 
   ngOnInit(): void {
@@ -35,11 +34,8 @@ export class DetalleUsuarioComponent {
     });
   }
 
-  get vehiculosActivos(): Vehiculo[] {
-    return this.usuarioDetalle?.vehiculos?.filter(v => v.activo) ?? [];
+  volverALista(): void {
+    this.router.navigate(['desktop/usuarios']); 
   }
 
-  volverALista(): void {
-    this.router.navigate(['desktop/usuarios']);
-  }
 }

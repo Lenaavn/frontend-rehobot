@@ -18,7 +18,7 @@
         <div class="form-group">
             <label for="vehiculo">Vehículo</label>
             <select id="vehiculo" [(ngModel)]="idVehiculo" name="idVehiculo" required>
-                <option *ngFor="let vehiculo of vehiculosActivos" [value]="vehiculo.id">
+                <option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">
                     {{ vehiculo.marca }} {{ vehiculo.modelo }} ({{ vehiculo.matricula }})
                 </option>
             </select>
@@ -73,8 +73,7 @@
             <label>Selecciona una Hora</label>
             <div class="horarios">
                 <button type="button" *ngFor="let h of horariosDisponibles" [disabled]="!esHorarioDisponible(h)"
-                    (click)="seleccionarHora(h)"
-                    [ngClass]="{ 'seleccionada': hora === h, 'disponible': esHorarioDisponible(h), 
+                    (click)="seleccionarHora(h)" [ngClass]="{ 'seleccionada': hora === h, 'disponible': esHorarioDisponible(h), 
             'ocupado': horariosOcupados.includes(h), 'no-disponible': !esHorarioDisponible(h) && !horariosOcupados.includes(h)}">
                     {{ h }}
                 </button>
