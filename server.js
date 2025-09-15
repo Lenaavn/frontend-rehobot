@@ -12,7 +12,7 @@ app.use(express.static(distFolder));
 
 // Redirigir todas las rutas al index.html
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(distFolder, 'index.html'));
+  res.sendFile(path.join(distFolder, 'index.csr.html'));
 });
 
 // Iniciar el servidor
