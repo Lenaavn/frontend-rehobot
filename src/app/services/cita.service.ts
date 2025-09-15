@@ -9,7 +9,7 @@ import { LocalDate, LocalTime } from '@js-joda/core';
 })
 export class CitaService {
 
-  private url = "http://backend-rehobot.onrender.com/rehobot/api/citas";
+  private url = "https://backend-rehobot.onrender.com/rehobot/api/citas";
 
   constructor(private clientHttp: HttpClient) { }
 

@@ -8,7 +8,7 @@ import { ServiCita } from '../models/serviCita';
 })
 export class ServiCitaService {
 
-  private url = "http://backend-rehobot.onrender.com/rehobot/api/servicitas";
+  private url = "https://backend-rehobot.onrender.com/rehobot/api/servicitas";
 
   constructor(private clientHttp: HttpClient) { }
 

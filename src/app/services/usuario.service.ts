@@ -7,7 +7,7 @@ import { Usuario } from '../models/usuario';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private url = "http://backend-rehobot.onrender.com/rehobot/api/usuarios";
+  private url = "https://backend-rehobot.onrender.com/rehobot/api/usuarios";
 
   constructor(private clientHttp: HttpClient) { }
 
