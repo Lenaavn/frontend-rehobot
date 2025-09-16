@@ -62,10 +62,11 @@ export class CrearCitaComponent implements OnInit {
   cargarVehiculos(): void {
     if (this.usuarioId !== null) {
       this.vehiculoService.getVehiculosPorUsuario(this.usuarioId).subscribe(data => {
-        this.vehiculos = data;
+        this.vehiculos = data.filter(v => v.activo); // solo activos
       });
     }
   }
+
 
   private cargarCitasExistentes(): void {
     this.citaService.listarCitas().subscribe(data => {

@@ -146,7 +146,11 @@ mat-button,
     color: black;
 }
 
-
+.usuario-desactivado {
+  color: #d32f2f;
+  font-weight: bold;
+  font-style: italic;
+}
 
 @media (max-width: 768px) {
     mat-form-field {
