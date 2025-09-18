@@ -147,51 +147,48 @@ mat-button,
     color: black;
 }
 
-/* Ajustes responsivos */
+/* Ajustes generales */
 @media (max-width: 768px) {
-    mat-form-field {
-        width: 80%;
-    }
+  mat-form-field {
+    width: 80%;
+  }
 
-    .mat-elevation-z8 {
-        max-width: 100%;
-    }
+  .mat-elevation-z8 {
+    max-width: 100%;
+  }
 
-    div {
-        padding: 15px;
+  div {
+    padding: 15px;
+  }
 
-    }
-
-    h2 {
-        font-size: 24px;
-    }
+  h2 {
+    font-size: 24px;
+  }
 }
+
+/* Ocultar columnas progresivamente — se mantienen usuario, valoracion y acciones */
 @media (max-width: 842px) {
-    .col-id {
-        display: none;
-    }
-}
-@media (max-width:842px) {
-    .col-servicio {
-        display: none;
-    }
+  .col-id {
+    display: none;
+  }
 }
 
-@media (max-width:508px) {
-    .col-valoracion {
-        display: none;
-    }
+@media (max-width: 768px) {
+  .col-servicio {
+    display: none;
+  }
 }
 
-@media (max-width: 414px) {
-    .col-comentario {
-        display: none;
-    }
+@media (max-width: 640px) {
+  .col-comentario {
+    display: none;
+  }
 }
 
+/* Acciones siempre visibles */
 @media (max-width: 775px) {
-    .accion {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+  .accion {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }

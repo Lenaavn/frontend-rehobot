@@ -9,12 +9,12 @@
   <table mat-table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-id"> ID </th>
       <td mat-cell *matCellDef="let sc"> {{sc.id}} </td>
     </ng-container>
 
     <ng-container matColumnDef="servicio">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Servicio </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-servicio"> Servicio </th>
       <td mat-cell *matCellDef="let sc"> {{sc.servicio}} </td>
     </ng-container>
 
@@ -24,7 +24,7 @@
     </ng-container>
 
     <ng-container matColumnDef="comentario">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="col-comentario"> Comentario </th>
       <td mat-cell *matCellDef="let sc"> {{sc.comentario}} </td>
     </ng-container>
 
