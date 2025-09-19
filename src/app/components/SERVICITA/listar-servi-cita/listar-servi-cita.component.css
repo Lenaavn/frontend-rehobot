@@ -167,7 +167,7 @@ mat-button,
 }
 
 /* Ocultar columnas progresivamente — se mantienen usuario, valoracion y acciones */
-@media (max-width: 842px) {
+@media (max-width: 900px) {
   .col-id {
     display: none;
   }
