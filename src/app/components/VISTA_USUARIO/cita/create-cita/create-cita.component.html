@@ -20,7 +20,7 @@
             <label for="servicio">Servicio</label>
             <select id="servicio" [(ngModel)]="idServicio" name="idServicio" (change)="ServicioSeleccionado()" required>
                 <option *ngFor="let servicio of servicios" [value]="servicio.id">
-                    {{ servicio.nombre | formatEnum }}
+                    {{ servicio.nombre | formatEnum }} - {{ servicio.precio }}€
                 </option>
             </select>
         </div>
